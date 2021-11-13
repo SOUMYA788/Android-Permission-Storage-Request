@@ -1,8 +1,10 @@
 public void permission(){
     if (ContextCompat.checkSelfPermission(getApplicationContext(),
             Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-        startCollectMusic();
+        // Permission Granted: Do whatever you want to do after Grant Permission.
+        //--
     }else {
+        // if not granted
         continuePermissionRequest();
     }
 }
@@ -11,13 +13,6 @@ private void continuePermissionRequest() {
     ActivityCompat.requestPermissions(MainActivity.this,
             new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION);
 }
-
-private void startCollectMusic() {
-    musicFiles = getAllAudio(MainActivity.this);
-    videoMusicFiles = getAllVideo(MainActivity.this);
-    initViewPager();
-}
-
 
 @Override
 public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -54,7 +49,7 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 
             }else {
                 // User Clicked on Allow Button
-                startCollectMusic();
+                //--
             }
         }
     }
@@ -64,6 +59,6 @@ public void onRequestPermissionsResult(int requestCode, @NonNull String[] permis
 protected void onResume() {
     super.onResume();
     if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
-        startCollectMusic();
+        // Permission Accepted. Do what you want to do.
     }
 }
